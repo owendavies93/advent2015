@@ -2,7 +2,7 @@ package advent2015
 
 object Day1 {
     def main(args: Array[String]) = {
-        val parens = parseInput()
+        val parens = Problem.parseInputLineToList("day1", "")
         
         println(part1(parens))
         println(part2(parens))
@@ -29,11 +29,4 @@ object Day1 {
 
         return -1
     }
-
-    private def parseInput(): List[String] = io.Source
-        .fromResource("day1")
-        .getLines()
-        .next()
-        .split("")
-        .toList
 }

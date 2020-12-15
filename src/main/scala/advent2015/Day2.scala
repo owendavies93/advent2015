@@ -2,7 +2,7 @@ package advent2015
 
 object Day2 {
     def main(args: Array[String]) = {
-        val dims = parseInput()
+        val dims = Problem.parseInputToListOfIntArray("day2", "x")
 
         println(part1(dims))
         println(part2(dims))
@@ -38,10 +38,4 @@ object Day2 {
 
         return total
     }
-
-    private def parseInput(): List[Array[Int]] = io.Source
-        .fromResource("day2")
-        .getLines()
-        .toList
-        .map { _.split("x").toArray.map(_.toInt) }
 }
