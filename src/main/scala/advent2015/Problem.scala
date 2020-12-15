@@ -13,4 +13,9 @@ object Problem {
         .getLines()
         .toList
         .map { _.split(split).toArray.map(_.toInt) }
+
+    def parseInputToString(res: String) = io.Source
+        .fromResource(res)
+        .getLines()
+        .next
 }
