@@ -5,8 +5,7 @@ object Day5 {
         val strings = Problem.parseInputToList("day5")
 
         println(strings.map(part1IsNice).count( _ == true ))
-        //println(strings.map(part2IsNice).count( _ == true ))
-        part2IsNice("aaa")
+        println(strings.map(part2IsNice).count( _ == true ))
     }
 
     def part1IsNice(input: String): Boolean = {
@@ -18,44 +17,15 @@ object Day5 {
             return false
         }
         
-        val chars = input.toCharArray
-
-        def findDupe(i: Int): Boolean = {
-            if (i >= chars.size - 1) {
-                return false;
-            } else if (chars(i) == chars(i + 1)) {
-                return true
-            } else {
-                return findDupe(i + 1)        
-            }
-        }
-
-        return findDupe(0)
+        val repeat =  """(.)\1""".r
+        return repeat.findFirstIn(input).isDefined
     }
 
     def part2IsNice(input: String): Boolean = {
+        val doublePairs =  """(..).*\1""".r
+        val repeat =  """(.).\1""".r
 
-        val chars = input.toCharArray
-
-        val pairs = chars zip chars.tail
-        val diff  = pairs.diff(pairs.distinct)
-
-        diff.foreach(println)
-
-        if (diff.size == 0) {
-            return false
-        }
-
-        def findDupeWithInBetween(i: Int): Boolean = {
-            if (i >= chars.size - 2) {
-                return false;
-            } else if (chars(i) == chars(i + 2) && chars(i) != chars(i + 1)) {
-                return true
-            } else {
-                return findDupeWithInBetween(i + 1)        
-            }
-        }
-        
-        return findDupeWithInBetween(0)
+        return doublePairs.findFirstIn(input).nonEmpty &&
+               repeat.findFirstIn(input).nonEmpty
     }
 }
