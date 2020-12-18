@@ -9,11 +9,19 @@ object Day7 {
         val lines = Problem.parseInputToList("day7")
                             .map(_.split(" -> ").toArray)
 
-        println(part1(lines))
+        val a = part1(lines)
+        println(a)
+        println(part2(lines, a.toString))
     }
 
     def part1(lines: List[Array[String]]): Int = {
         lines.foreach(l => state(l(1)) = l(0))
+        return processCommand("a", state)
+    }
+
+    def part2(lines: List[Array[String]], bval: String): Int = {
+        lines.foreach(l => state(l(1)) = l(0))
+        state("b") = bval
         return processCommand("a", state)
     }
 
