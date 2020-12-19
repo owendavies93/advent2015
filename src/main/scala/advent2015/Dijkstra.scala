@@ -3,9 +3,9 @@ package advent2015
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
 
-object Dijkstra {
+import WeightedDirectedGraph.Graph
 
-    type Graph[N] = Map[N, Map[N, Int]]
+object Dijkstra {
 
     def dijkstra[N]
         ( graph:  Graph[N]
