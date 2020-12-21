@@ -3,12 +3,10 @@ package advent2015
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
 
-import WeightedDirectedGraph.Graph
-
 object Dijkstra {
 
     def dijkstra[N]
-        ( graph:  Graph[N]
+        ( graph:  WeightedUndirectedGraph[N]
         , source: N )
         : (Map[N, Int], Map[N, N]) = {
 
@@ -22,7 +20,7 @@ object Dijkstra {
 
             val minCost = result(minNode)
 
-            for ((node, cost) <- graph getOrElse(minNode, Map.empty)) {
+            for ((node, cost) <- graph.get(minNode)){
                 val cost_ = cost + minCost
 
                 if (cost_ < result.getOrElse(node, Int.MaxValue)) {
@@ -36,7 +34,12 @@ object Dijkstra {
         return (result, pred)
     }
 
-    def shortestPath[N](graph: Graph[N], source: N, target: N): List[N] = {
+    def shortestPath[N]
+        ( graph: WeightedUndirectedGraph[N]
+        , source: N
+        , target: N)
+        : List[N] = {
+
         val pred = dijkstra(graph, source)._2
 
         def right[N](x: N, pred: Map[N, N]): List[N] = {
@@ -53,12 +56,16 @@ object Dijkstra {
         return right(target, pred)
     }
 
-    def shortestPathTotalWeight[N](g: Graph[N], path: List[N]): Int = {
+    def shortestPathTotalWeight[N]
+        ( g: WeightedUndirectedGraph[N]
+        , path: List[N])
+        : Int = {
+
         var total = 0
 
         def get(i: Int) {
             if (i < path.size - 1) {
-                total += g(path(i))(path(i + 1))
+                total += g.get(path(i))(path(i + 1))
                 get(i + 1)
             }
         }

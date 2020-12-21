@@ -10,9 +10,11 @@ class DijkstraSpec extends AnyFunSuite {
                     "b" -> Map("c" -> 141, "d" -> 10),
                     "c" -> Map("a" -> 2))
 
+        val graph = new WeightedUndirectedGraph[String](g)
+
         assertResult(474) {
-            val path = Dijkstra.shortestPath(g, "a", "d")
-            Dijkstra.shortestPathTotalWeight(g, path)
+            val path = Dijkstra.shortestPath(graph, "a", "d")
+            Dijkstra.shortestPathTotalWeight(graph, path)
         }
     }
 
