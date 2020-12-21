@@ -12,12 +12,12 @@ class WeightedUndirectedGraphSpec extends AnyFunSuite {
                     "e" -> Map("f" -> 1))
 
         val graph = new WeightedUndirectedGraph(g)
-        println(graph.getAllPaths("a"))
+        graph.getAllPaths("a")
 
         val g2 = Map("l" -> Map("d" -> 464, "b" -> 518),
                      "d" -> Map("b" -> 141))
 
         val graph2 = new WeightedUndirectedGraph(g2)
-        println(graph2.getAllPaths("l"))
+        graph2.getAllPaths("l")
     }
 }
