@@ -6,4 +6,6 @@ lazy val hello = (project in file("."))
     name := "Advent2015",
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.2",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2" % Test,
+    libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.1",
+    resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/",
   )
