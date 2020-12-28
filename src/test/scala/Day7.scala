@@ -12,8 +12,6 @@ class Day7Spec extends AnyFunSuite {
         var state = Map[String, String]()
         lines.foreach(l => state(l(1)) = l(0))
 
-        println(state)
-
         assertResult(507) {
             Day7.processCommand("e", state)
         }
