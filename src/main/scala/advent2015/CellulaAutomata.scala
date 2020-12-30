@@ -8,8 +8,12 @@ class CellulaAutomata
     , private val height: Int
     ) {
 
-    private val ON  = "#"
-    private val OFF = "."
+    private val on  = "#"
+    private val off = "."
+    private val neighbourList = List(
+        (-1, -1), (-1, 0), (0, -1), (1, -1),
+        (1, 1), (-1, 1), (1, 0), (0, 1)
+    )
 
     def checkBounds(x: Int, y: Int): Boolean = {
         val xMatch = x match {
@@ -29,12 +33,29 @@ class CellulaAutomata
         return if (checkBounds(x, y)) grid(y * width + x) else false
     }
 
+    def neighbours(x: Int, y: Int): List[(Int, Int)] = {
+        return neighbourList.map(n => (x + n._1, y + n._2))
+                            .filter(n => checkBounds(n._1, n._2))
+    }
+
+    def step(stepFn: (Int, Int) => Boolean): CellulaAutomata = {
+        val nextGrid = ArrayBuffer.fill(height * width)(false)
+
+        for (y <- 0 until width) {
+            for (x <- 0 until height) {
+                nextGrid(y * width + x) = stepFn(x, y)
+            }
+        }
+
+        return new CellulaAutomata(nextGrid, width, height)
+    }
+
     override def toString(): String = {
         val sb = new StringBuilder
 
         for (y <- 0 until width) {
             for (x <- 0 until height) {
-                sb.append(if(get(x, y)) ON else OFF)
+                sb.append(if(get(x, y)) on else off)
             }
 
             if (y < width - 1) {
