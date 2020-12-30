@@ -29,6 +29,10 @@ class CellulaAutomata
         return xMatch && yMatch
     }
 
+    def countOn(): Int = {
+        return grid.filter(_ == true).size
+    }
+
     def get(x: Int, y: Int): Boolean = {
         return if (checkBounds(x, y)) grid(y * width + x) else false
     }
