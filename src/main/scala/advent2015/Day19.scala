@@ -10,6 +10,7 @@ object Day19 {
         val start = input.last
         val machine = parseInput(input.takeWhile(!_.isEmpty))
         println(part1(machine, start))
+        println(part2(start))
     }
 
     def part1(machine: Map[String, List[String]], start: String): Int = {
@@ -27,6 +28,25 @@ object Day19 {
             }
 
         return res.flatten.toSet.size
+    }
+
+    /*
+        We have a decent shortcut here.
+        Note that Rn, Ar and Y only ever appear on the RHS of
+        the rules, and a Y causes the terms on the right of it to
+        be removed. Ar and Rn always match so their counts are the
+        same. Remove one extra because we need to start with "e",
+        not an empty string.
+        The total number of symbols in the string is just the number
+        of upper case symbols in the string.
+    */
+    def part2(start: String): Int = {
+        val chars = start.filter(_.isUpper).size
+        val rn = """Rn""".r
+        val ys = """Y""".r
+
+        return chars - ((2 * rn.findAllMatchIn(start).size) +
+                        (2 * ys.findAllMatchIn(start).size) + 1)
     }
 
     def parseInput(input: List[String]): Map[String, List[String]] = {
