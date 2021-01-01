@@ -9,7 +9,7 @@ class FactoriseSpec extends AnyFunSuite with Matchers {
     test("primeFactors") {
         Factorise.primeFactors(4)    should equal ( List(2, 2) )
         Factorise.primeFactors(1)    should equal ( List() )
-        Factorise.primeFactors(3514) should equal ( List(251, 7, 2) )
+        Factorise.primeFactors(3514) should equal ( List(2, 7, 251) )
     }
 
     test("factors") {
