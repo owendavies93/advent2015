@@ -7,16 +7,22 @@ object Day22 {
 
     def main(args: Array[String]) {
         println((0 until 1000000).map(_ => part1()).min)
+        println((0 until 10000000).map(_ => part2()).min)
     }
 
     def part1(): Int = {
         val m = new Magician(50, 500, 0, spells(), Set[Spell]())
         val b = new Boss(71, 10, 0)
-
         return fight(m, b)
     }
 
-    def fight(m: Magician, b: Boss): Int = {
+    def part2(): Int = {
+        val m = new Magician(50, 500, 0, spells(), Set[Spell]())
+        val b = new Boss(71, 10, 0)
+        return fight(m, b, true)
+    }
+
+    def fight(m: Magician, b: Boss, hard: Boolean = false): Int = {
         var usedMana = 0
 
         while(true) {
@@ -24,6 +30,13 @@ object Day22 {
                 runEffects(m, b)
                 if (b.hp <= 0) {
                     return usedMana
+                }
+
+                if (hard) {
+                    m.hp -= 1
+                    if (m.hp <= 0) {
+                        return Int.MaxValue
+                    }
                 }
 
                 usedMana += m.attack(b)
