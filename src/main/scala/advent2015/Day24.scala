@@ -3,6 +3,7 @@ package advent2015
 object Day24 {
     def main (args: Array[String]) {
         val input = Problem.parseInputToList("day24").map(_.toInt)
+        println(part1(input))
         println(part2(input))
     }
 
@@ -15,7 +16,7 @@ object Day24 {
     }
 
     private def getQuantumEntanglement(in: List[Int], groups: Int): BigInt = {
-        val candidates = (1 to in.length).map(
+        val candidates = (1 to in.length / groups).map(
             i => in.combinations(i).find(l => l.sum == in.sum / groups)
         ).filter(_ != None).map(i => i.get.map(BigInt(_)))
 
