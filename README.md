@@ -12,3 +12,13 @@ Currently this repo also contains some generic implementations of useful data
 structures and problem solutions, but eventually they'll get moved out into a
 shared repo.
 
+#### TODO
+
+- [ ] Move util modules into shared repo
+- [ ] Re-implement Day 22 using Djikstra (or some other non random trial method)
+- [ ] Ditto for Day 21 (although probably just DFS)
+- [ ] Add tests for Day 22
+- [ ] Add tests for all parts of all days
+- [ ] Reduce use of mutable data structures across all days
+- [ ] Rewrite some days in a more functional and less impeartive style
+
