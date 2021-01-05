@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 import scala.collection.mutable.HashMap
 
 object Day3 {
@@ -31,10 +33,10 @@ object Day3 {
         for ((d, i) <- dirs.view.zipWithIndex) {
             if (i % 2 == 0) {
                 realCurrent = processCommand(realCurrent, d)
-                positions = addToMap(positions, realCurrent) 
+                positions = addToMap(positions, realCurrent)
             } else {
                 roboCurrent = processCommand(roboCurrent, d)
-                positions = addToMap(positions, roboCurrent)    
+                positions = addToMap(positions, roboCurrent)
             }
         }
 

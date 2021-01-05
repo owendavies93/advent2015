@@ -1,9 +1,11 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 object Day1 {
     def main(args: Array[String]) = {
         val parens = Problem.parseInputLineToList("day1", "")
-        
+
         println(part1(parens))
         println(part2(parens))
     }

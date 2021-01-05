@@ -1,5 +1,8 @@
 package advent2015
 
+import scalaadventutils.Problem
+import scalaadventutils.Factorise
+
 import scala.collection.mutable.Map
 
 object Day20 {

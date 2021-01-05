@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 import java.security.MessageDigest
 
 object Day4 {

@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 import scala.collection.mutable.StringBuilder
 
 object Day10 {

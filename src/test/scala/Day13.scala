@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 import org.scalatest.funsuite.AnyFunSuite
 
 class Day13Spec extends AnyFunSuite {

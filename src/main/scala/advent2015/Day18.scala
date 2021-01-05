@@ -1,5 +1,8 @@
 package advent2015
 
+import scalaadventutils.Problem
+import scalaadventutils.CAUtils
+
 object Day18 {
 
     def main(args: Array[String]) = {

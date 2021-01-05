@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 object Day24 {
     def main (args: Array[String]) {
         val input = Problem.parseInputToList("day24").map(_.toInt)

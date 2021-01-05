@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 object Day8 {
 
     def main(args: Array[String]) {

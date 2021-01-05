@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 object Day2 {
     def main(args: Array[String]) = {
         val dims = Problem.parseInputToListOfIntArray("day2", "x")

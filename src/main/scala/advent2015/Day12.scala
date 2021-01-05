@@ -1,5 +1,7 @@
 package advent2015
 
+import scalaadventutils.Problem
+
 import play.api.libs.json._
 
 object Day12 {
