@@ -8,10 +8,6 @@ functional style (but not always succeeding).
 Run `sbt test` to run the tests, after installing
 [sbt](https://www.scala-sbt.org/).
 
-Currently this repo also contains some generic implementations of useful data
-structures and problem solutions, but eventually they'll get moved out into a
-shared repo.
-
 #### TODO
 
 - [x] Move util modules into shared repo
