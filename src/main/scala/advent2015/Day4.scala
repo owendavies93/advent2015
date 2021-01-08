@@ -5,6 +5,8 @@ import scalaadventutils.Problem
 import java.security.MessageDigest
 
 object Day4 {
+    val digest = MessageDigest.getInstance("MD5")
+
     def main(args: Array[String]) = {
         val input = Problem.parseInputToString("day4")
 
@@ -13,26 +15,24 @@ object Day4 {
     }
 
     def part1(input: String): Int = {
-        return findWithZeros(input, 5)
+        return findWithZeros(input, 1, 5)
     }
 
     def part2(input: String): Int = {
-        return findWithZeros(input, 6)
+        return findWithZeros(input, 1, 6)
     }
 
-    private def findWithZeros(input: String, zeros: Int): Int = {
-        val digest = MessageDigest.getInstance("MD5")
-        var candidate = 0
-        var res = ""
-        val comp = List.fill(zeros)("0").mkString
+    private def findWithZeros(input: String, candidate: Int, zeros: Int): Int =
+        if (checkZeros(
+             digest.digest((input + candidate.toString).getBytes),
+             zeros)
+           ) return candidate
+        else findWithZeros(input, candidate + 1, zeros)
 
-        while(res.slice(0, zeros) != comp) {
-            candidate += 1;
-            val testString = input + candidate.toString
-
-            res = digest.digest(testString.getBytes).map("%02x".format(_)).mkString
-        }
-
-        return candidate
+    def checkZeros(input: Array[Byte], zeros: Int): Boolean = {
+        if (zeros % 2 == 0) (0 until zeros / 2).forall(input(_) == 0)
+        else (0 until (zeros - 1) / 2).forall(input(_) == 0) &&
+             ((input((zeros - 1) / 2) & 0xF0) == 0)
     }
+
 }
