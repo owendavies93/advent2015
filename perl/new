@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [[ -n $1 ]]; then
+    DAY=$1
+else
+    DAY=$(date '+%-d')
+fi
+
+if [[ -n $2 ]]; then
+    YEAR=$2
+fi
+
+if [[ ! -d bin ]]; then
+    echo 'No bin directory!'
+    exit
+fi
+
+for i in 1 2
+do
+    cat <<EOF > "bin/day$DAY-$i.pl"
+#!/usr/bin/env perl
+use Mojo::Base -strict;
+
+use Array::Utils qw(:all);
+use List::AllUtils qw(:all);
+use Memoize;
+
+my \$file = defined \$ARGV[0] ? \$ARGV[0] : 'inputs/day$DAY';
+\$file = "inputs/day$DAY-\$file" if \$file =~ /test/;
+open(my \$fh, '<', \$file) or die \$!;
+while (<\$fh>) {
+    chomp;
+}
+EOF
+chmod +x bin/day$DAY-$i.pl
+done
+
+if [[ ! -d inputs ]]; then
+    echo 'No input directory!'
+    exit
+fi
+
+if [[ -n $YEAR ]]; then
+    aocdl -year $YEAR -day $DAY
+else
+    aocdl -day $DAY
+fi
+
